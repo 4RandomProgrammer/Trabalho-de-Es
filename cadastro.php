@@ -36,7 +36,7 @@
     <body>
         <h1>Cinema top</h1>
         <h2>Cadastro de problemas</h2>
-        <p><font color="#AA0000">* required fields</font></p>
+        <p><font color="#AA0000">* Campos Obrigatórios</font></p>
 
         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
 
@@ -77,6 +77,7 @@
         <br>
         <button type="submit" name="enviarFormulario">Enviar</button>
         </form>
+        <br><br>
         
         <a href="index.php">Voltar para index</a>
 </body>
