@@ -6,7 +6,7 @@ class Controle{
     public $conn;
 
     public function __construct(){
-        $conn = self::$connection->getInstance();
+        self::$conn = self::$connection->getInstance();
     }
 
     public function insertBD($conexao, $query){
