@@ -13,11 +13,21 @@
     $query = 'SELECT numero, status FROM sala ORDER BY numero';
 
     $selecao = $c->selectBD($query);
+    $status = false;
 
-    while($linha = mysqli_fetch_array($selecao)){?>
+    while($linha = mysqli_fetch_array($selecao)){
+        
+        if($linha['status'] == true){
+            $status = 'Disponível';
+            $cor = '#009933';
+        } 
+        else{
+            $status = 'Não disponível';
+            $cor = '#ff0000';
+        }?>
 
         <ul>
-            <li>Sala <?=$linha['numero']?> - <?=$linha['status'] ?></li>
+            <li>Sala <?=$linha['numero']?> - <font color=<?php echo $cor ?>><?=$status?></font> </li>
         </ul>
 
     <?php } ?>
@@ -30,7 +40,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar</title>
+    <title>Lista de Salas</title>
 </head>
 <body>
     <a href="index.php">Voltar para index</a>
