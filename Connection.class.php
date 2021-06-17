@@ -4,7 +4,7 @@ class Connection{
 
     public static $instance;
 
-    private function __construct() {
+    public function __construct() {
         //vazio
     }
 

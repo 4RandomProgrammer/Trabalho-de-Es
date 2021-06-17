@@ -1,8 +1,29 @@
 <?php
 
+    function MyAutoload($className) {
+        $extension =  spl_autoload_extensions();
+        require_once (__DIR__ . '/' . $className . $extension);
+    }
+
+    spl_autoload_extensions('.class.php'); // quais extensões iremos considerar
+    spl_autoload_register('MyAutoload');
+    
+    $c = new Controle();
+
+    $query = 'SELECT numero, status FROM sala ORDER BY numero';
+
+    $selecao = $c->selectBD($query);
+
+    while($linha = mysqli_fetch_array($selecao)){?>
+
+        <ul>
+            <li>Sala <?=$linha['numero']?> - <?=$linha['status'] ?></li>
+        </ul>
+
+    <?php } ?>
 
 
-?><!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="pt-br">
 <head>
