@@ -1,8 +1,5 @@
 <?php
 
-    
-    
-
     function MyAutoload($className) {
         $extension =  spl_autoload_extensions();
         require_once (__DIR__ . '/' . $className . $extension);
@@ -126,7 +123,7 @@
             <span class="error"><font color="#AA0000">* <?php echo $erroUrgencia;?></font></span>
 
             <br><br>
-            <label for="A sala esta indisponivel? ">A sala esta indisponivel?&ensp;</label><input type = "checkbox" id = "Indisponivel" name = "Indisponivel" valor = "true">
+            <label for="Indisponivel">A sala está indisponível?&ensp;</label><input type = "checkbox" id = "Indisponivel" name = "Indisponivel" valor = "true">
             <br><br>
             <label for="cData"> Data de início </label>
             <input type="date" name="tData" id="cData">
@@ -145,7 +142,7 @@
             </form>
             <br>
             
-            <a href="index.php" class="btn btn-primary" role="button">Voltar para index</a>
+            <a href="index.php" class="btn btn-primary" role="button">Voltar</a>
         </div>
 </body>
 
