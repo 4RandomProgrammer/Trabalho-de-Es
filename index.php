@@ -9,7 +9,7 @@
     <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Sistema de Registro de Problemas</a>
     </nav>
-
+    <br>
     <a type="button" class="btn btn-outline-dark" href="cadastro.php">Registrar um Problema</a>
 
     <a type="button" class="btn btn-outline-dark" href="remocao.php">Resolver um Problema</a>

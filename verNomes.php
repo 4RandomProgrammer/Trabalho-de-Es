@@ -10,7 +10,7 @@
     
     $c = new Controle();
 
-    $query = 'SELECT numero, status FROM sala ORDER BY numero';
+    $query = 'SELECT numero, numacentos, status FROM sala ORDER BY numero';
 
     $selecao = $c->selectBD($query);
     $status = false;
@@ -27,7 +27,7 @@
         }?>
 
         <ul>
-            <li>Sala <?=$linha['numero']?> - <font color=<?php echo $cor ?>><?=$status?></font> </li>
+            <li>Sala <?=$linha['numero']?> (<?=$linha['numacentos']?> lugares) - <font color=<?php echo $cor ?>><?=$status?></font> </li>
         </ul>
 
     <?php } ?>
