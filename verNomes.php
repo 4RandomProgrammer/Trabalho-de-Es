@@ -47,5 +47,6 @@
 </head>
 <body>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="btn btn-primary" role="button">Voltar</a>
+<!––Nao sabia um jeito melhor de centralizar o botao :( 
 </body>
 </html>
