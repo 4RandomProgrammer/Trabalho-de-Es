@@ -26,9 +26,11 @@
             $cor = '#ff0000';
         }?>
 
-        <ul>
-            <li>Sala <?=$linha['numero']?> (<?=$linha['numacentos']?> lugares) - <font color=<?php echo $cor ?>><?=$status?></font> </li>
-        </ul>
+        <div class="list-group" style="display:inline-block">
+            <div class="list-group-item" style="display:inline-block">Sala <?=$linha['numero']?> (<?=$linha['numacentos']?> lugares) - <font color=<?php echo $cor ?>><?=$status?></font></div>
+        </div>
+        <br>
+        
 
     <?php } ?>
 
@@ -41,8 +43,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Salas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
-    <a href="index.php">Voltar para index</a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="btn btn-primary" role="button">Voltar</a>
 </body>
 </html>
