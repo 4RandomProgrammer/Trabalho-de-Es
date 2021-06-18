@@ -89,62 +89,64 @@
             </span>
         </div>
         </nav>
-        
-        <h2>Cadastro de problemas</h2>
-        <p><font color="#AA0000">* Campos Obrigatórios</font></p>
+        <div class="alinhar" style="text-align: center;">
+            <h2>Cadastro de problemas</h2>
+            <p><font color="#AA0000">* Campos Obrigatórios</font></p>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
+            <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
 
-        <label for="cSala">Sala: </label> 
+            <label for="cSala">Sala: </label> 
 
-        <span class="error">
+            <span class="error">
 
-        <select name="tSala" id="cSala">
-            <option value="erro">--</option>
-            <?php
+            <select name="tSala" id="cSala">
+                <option value="erro">--</option>
+                <?php
 
-                $query = 'SELECT numero, status FROM sala ORDER BY numero';
+                    $query = 'SELECT numero, status FROM sala ORDER BY numero';
 
-                $selecao = $conexao->selectBD($query);
+                    $selecao = $conexao->selectBD($query);
 
-                while($row = mysqli_fetch_array($selecao)){
-                    
-                    echo '<option value="'.$row['numero'].'">'.$row['numero'].'</option>';
+                    while($row = mysqli_fetch_array($selecao)){
+                        
+                        echo '<option value="'.$row['numero'].'">'.$row['numero'].'</option>';
 
-                }
+                    }
 
-            ?>
-        </select>
-        <font color="#AA0000">* <?php echo $erroSala;?></font></span>
-        <br><br>
+                ?>
+            </select>
+            <font color="#AA0000">* <?php echo $erroSala;?></font></span>
+            <br><br>
 
-        <label for="tUrgencia">Gravidade: </label> 
-        
-        <input type="radio" name="tUrgencia" id="cBaixa" value="baixa" ><label for="cBaixa">Baixa</label>
-        <input type="radio" name="tUrgencia" id="cMedia" value="media"> <label for="cMedia">Média</label>
-        <input type="radio" name="tUrgencia" id="cUrgente" value="urgente"> <label for="cUrgente">Urgente</label>
-        <span class="error"><font color="#AA0000">* <?php echo $erroUrgencia;?></font></span>
+            <label for="tUrgencia">Gravidade: </label> 
+            
+            <input type="radio" name="tUrgencia" id="cBaixa" value="baixa" ><label for="cBaixa">Baixa</label>
+            <input type="radio" name="tUrgencia" id="cMedia" value="media"> <label for="cMedia">Média</label>
+            <input type="radio" name="tUrgencia" id="cUrgente" value="urgente"> <label for="cUrgente">Urgente</label>
+            <span class="error"><font color="#AA0000">* <?php echo $erroUrgencia;?></font></span>
 
-        <br><br>
+            <br><br>
+            <label for="A sala esta indisponivel? ">A sala esta indisponivel?&ensp;</label><input type = "checkbox" id = "Indisponivel" name = "Indisponivel" valor = "true">
+            <br><br>
+            <label for="cData"> Data de início </label>
+            <input type="date" name="tData" id="cData">
+            <span class="error"><font color="#AA0000">* <?php echo $erroData;?></font></span>
+            
+            <br><br>
 
-        <label for="cData"> Data de início </label>
-        <input type="date" name="tData" id="cData">
-        <span class="error"><font color="#AA0000">* <?php echo $erroData;?></font></span>
-        
-        <br><br>
-
-        <label for="cDescricao">Descrição:</label>
-        <span class="error"><font color="#AA0000">*<?php echo $erroDescricao;?></font></span>
-        <br>
-        <textarea name="tDescricao" id="cDescricao" cols="50" rows="6"></textarea>
-        
-        <br>
-        <br>
-        <button type="submit" name="enviarFormulario" class="btn btn-outline-dark">Enviar</button>
-        </form>
-        <br><br>
-        
-        <a href="index.php" class="btn btn-primary" role="button">Voltar para index</a>
+            <label for="cDescricao">Descrição:</label>
+            <span class="error"><font color="#AA0000">*<?php echo $erroDescricao;?></font></span>
+            <br>
+            <textarea name="tDescricao" id="cDescricao" cols="50" rows="6"></textarea>
+            
+            <br>
+            <br>
+            <button type="submit" name="enviarFormulario" class="btn btn-outline-dark">Enviar</button>
+            </form>
+            <br>
+            
+            <a href="index.php" class="btn btn-primary" role="button">Voltar para index</a>
+        </div>
 </body>
 
 </html>
