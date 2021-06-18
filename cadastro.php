@@ -69,7 +69,7 @@
             
             if(!empty($_POST['Indisponivel'])){
         
-                $query = "UPDATE sala SET sala.status = true WHERE numero ='".$sala."'";
+                $query = "UPDATE sala SET sala.status = false WHERE numero ='".$sala."'";
                 $conexao->insertBD($query);
             }
         }
