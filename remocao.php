@@ -8,24 +8,18 @@ function MyAutoload($className) {
     spl_autoload_register('MyAutoload');
     
     $c = new Controle();
+        
+    $query = 'SELECT numero, numacentos, status FROM sala ORDER BY numero';
 
-    for ($x = 0; $x <= 10; $x++) {
-        $query = 'SELECT descricao, data, urgencia, numero FROM problema WHERE numero = <?=$x?>';
-        
-        $selecao = $c->selectBD($query);
-        
-        while($linha = mysqli_fetch_array($selecao)){
-        ?>
-        
+    $selecao = $c->selectBD($query);
+    ?>
+
         <ul>
-            <li>Sala <?=$linha['numero']?> (<?=$linha['numacentos']?> lugares) - <font color=<?php echo $cor ?>><?=$status?></font> </li>
+            <li>Problema (Sala: <?=$linha['numero']?> (<?=$linha['data']?>)</li>
         </ul>
 
-        <?php
-        } 
-    
-    } 
-
+    <?php
+    }
     
 
 ?>
