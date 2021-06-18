@@ -57,12 +57,21 @@
             $descricao = $_POST['tDescricao'];
         }
 
+        
+
+
         if(empty($erroData) & empty($erroUrgencia) & empty($erroSala) & empty($erroDescricao)){
             //Fazer conexão com o bd
              //Controlador de conexão
             $query = "INSERT INTO problema (descricao, data, urgencia, numero) VALUES ('".$descricao."','".$data."','".$urgencia."','".$sala."')";
             
             $conexao->insertBD($query);
+            
+            if(!empty($_POST['Indisponivel'])){
+        
+                $query = "UPDATE sala SET sala.status = true WHERE numero ='".$sala."'";
+                $conexao->insertBD($query);
+            }
         }
 
     }
@@ -86,9 +95,14 @@
             </span>
         </div>
         </nav>
-        <div class="alinhar" style="text-align: center;">
+
+        <div style="text-align: center; margin-left:30%">
+        <div class="alinhar" style="width:500px;">
             <h2>Cadastro de problemas</h2>
-            <p><font color="#AA0000">* Campos Obrigatórios</font></p>
+            <div class="alert alert-danger" role="alert">
+                * Campos Obrigatórios
+            </div>
+            <p><font color="#AA0000"></font></p>
 
             <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
 
@@ -144,6 +158,8 @@
             
             <a href="index.php" class="btn btn-primary" role="button">Voltar</a>
         </div>
+        </div>
+        
 </body>
 
 </html>
