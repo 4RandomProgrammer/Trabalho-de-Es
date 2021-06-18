@@ -85,7 +85,7 @@
         <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <span class="navbar-text">
-            <h1>Cinema top</h1>
+            <h1>Cinema top 😎</h1>
             </span>
         </div>
         </nav>
