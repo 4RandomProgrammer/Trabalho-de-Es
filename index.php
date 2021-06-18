@@ -10,9 +10,9 @@
     <a class="navbar-brand" href="#">Sistema de Registro de Problemas</a>
     </nav>
 
-    <a type="button" class="btn btn-outline-dark" href="cadastro.php">Registrar de Problema</a>
+    <a type="button" class="btn btn-outline-dark" href="cadastro.php">Registrar um Problema</a>
 
-    <a type="button" class="btn btn-outline-dark" href="modificar.php">Modificar status da Sala</a>
+    <a type="button" class="btn btn-outline-dark" href="remocao.php">Resolver um Problema</a>
 
     <a type="button" class="btn btn-outline-dark" href="verNomes.php">Ver as Salas</a>
     
