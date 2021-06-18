@@ -10,7 +10,7 @@ class Connection{
 
     public static function getInstance() {
         if (!isset(self::$instance)) {
-            self::$instance = mysqli_connect("localhost", "root", "","cinema");
+            self::$instance = mysqli_connect("localhost", "root","","cinema");
 
             if(!self::$instance){
                 die("A conexão falhou: " .mysqli_connect_error());
