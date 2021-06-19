@@ -15,8 +15,19 @@
     	     $sql="DELETE FROM problema WHERE id =".$ID."";   
 	     $c = new Controle();
 	     $c->deleteBD($sql);
-	     ?> <p>Problema removido com sucesso!</p><?php
+	     ?>
+	     <div class="alert alert-success" role="alert">
+  			Problema removido com sucesso!
+  		</div>
+	      <?php
+   		
+   		if($_GET['sala'])
+   		{	
+   			$num = intval($_GET['sala']);
+    			$query = "UPDATE sala SET sala.status = true WHERE numero ='".$num."'";
+                	$c->insertBD($query);
    
+    		} 
 	     //<script>window.location="remocao.php"</script><?php
     }
     
@@ -45,7 +56,7 @@
 		<br>
 		<br>
 		<input type="button" value="Remover" name-"remover" id="rem" 
-		onclick="return deleteqry(<?php echo $linha['id'] ?>);"/>
+		onclick="return deleteqry(<?php echo $linha['id'] ?>, <?php echo $linha['numero'] ?>);"/>
     	</div>
     </div>
     <br>
@@ -65,11 +76,17 @@
     <title>Problemas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<script>
-		function deleteqry(id)
+		function deleteqry(id, num)
 		{ 
-		  if(confirm("Tem certeza que deseja remover este problema?")==true)
-			   window.location="remocao.php?id="+id;
-		    return false;
+		  if(confirm("Tem certeza que deseja remover este problema?")==true){
+		  
+		  	if(confirm("Deixar a sala disponível?")==true){
+		  		window.location="remocao.php?id="+id+"&sala="+num;
+		  		return;
+		  	}
+			window.location="remocao.php?id="+id;
+		  }
+		  return false;
 		}
 	</script>
 </head>
