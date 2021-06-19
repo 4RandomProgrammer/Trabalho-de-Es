@@ -1,23 +1,8 @@
 <?php
 
-   function deletaproblema($ID){
-    	     $sql="DELETE FROM problema WHERE id =".$ID."";   
-	     $c = new Controle();
-	     $c->deleteBD($sql); //dando problema aq 
-	     ?> <p>passou</p><?php
-   
-	     //<script>window.location="remocao.php"</script><?php
-    }
-    
-   
-    if($_GET['id'])
-   {
-   	$id = intval($_GET['id']);
-    	deletaproblema($id);
-   }  
-   
+       
     function MyAutoload($className) {
-   
+    
         $extension =  spl_autoload_extensions();
         require_once (__DIR__ . '/' . $className . $extension);
     }
@@ -25,6 +10,22 @@
 
     spl_autoload_extensions('.class.php'); // quais extensões iremos considerar
     spl_autoload_register('MyAutoload');
+
+   function deletaproblema($ID){
+    	     $sql="DELETE FROM problema WHERE id =".$ID."";   
+	     $c = new Controle();
+	     $c->deleteBD($sql);
+	     ?> <p>Problema removido com sucesso!</p><?php
+   
+	     //<script>window.location="remocao.php"</script><?php
+    }
+    
+   
+    if($_GET['id']) //Undefined index aqui
+   {
+   	$id = intval($_GET['id']);
+    	deletaproblema($id);
+   }  
     
     $c = new Controle();
     $query = 'SELECT id, descricao, data, urgencia, numero FROM problema ORDER BY numero';
