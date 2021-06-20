@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS problema (
   data date NOT NULL,
   urgencia varchar(60) NOT NULL,
   numero int(6) UNSIGNED NOT NULL,
+  status boolean,
   PRIMARY KEY (id),
   KEY fk_sala_id (numero)
 )
