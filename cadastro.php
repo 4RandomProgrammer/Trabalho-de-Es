@@ -64,14 +64,21 @@
         if(empty($erroData) & empty($erroUrgencia) & empty($erroSala) & empty($erroDescricao)){
             //Fazer conexão com o bd
              //Controlador de conexão
-            $query = "INSERT INTO problema (descricao, data, urgencia, numero) VALUES ('".$descricao."','".$data."','".$urgencia."','".$sala."')";
-            
-            $conexao->insertBD($query);
             
             if(!empty($_POST['Indisponivel'])){
         
                 $query = "UPDATE sala SET sala.status = false WHERE numero ='".$sala."'";
                 $conexao->insertBD($query);
+            
+              	 $query = "INSERT INTO problema (descricao, data, urgencia, numero, status) VALUES ('".$descricao."','".$data."','".$urgencia."','".$sala."', false)";                
+                $conexao->insertBD($query);
+            
+            }else{
+            
+            	$query = "INSERT INTO problema (descricao, data, urgencia, numero, status) VALUES ('".$descricao."','".$data."','".$urgencia."','".$sala."', true)";
+            	$conexao->insertBD($query);
+            
+    
             }
         }
 
