@@ -78,12 +78,13 @@
    
 	
     $c = new Controle();
-    $query = 'SELECT id, descricao, data, urgencia, numero FROM problema ORDER BY numero';
+    $query = 'SELECT id, descricao, data, urgencia, numero, status FROM problema ORDER BY numero';
         
     $selecao = $c->selectBD($query);
         
     while($linha = mysqli_fetch_array($selecao)){
-
+	$indisp = "Este problema deixa a sala indisponível.";
+	
     ?>
     <div class="list-group" style="display:inline-block">
     	<div class="list-group-item" style="display:inline-block">
@@ -92,6 +93,15 @@
 		Sala: <?=$linha['numero']?> (Data de Início: <?=$linha['data']?>)
 		<br>
 		<?=$linha['descricao']?> 
+		<br>
+		<?php if(!$linha['status']){
+    			?>
+			<font color="red">  
+			<b>Este problema deixa a sala indisponível.<b>
+			</font>  
+		<?php
+    		}
+		?>
 		<br>
 		<br>
 		<input type="button" class="btn btn-outline-dark btn-sm" value="Remover" name-"remover" id="rem" 
