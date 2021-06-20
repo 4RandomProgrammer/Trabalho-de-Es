@@ -11,6 +11,17 @@
     spl_autoload_extensions('.class.php'); // quais extensões iremos considerar
     spl_autoload_register('MyAutoload');
 
+	 ?>
+	<nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-text">
+            <h1>Cinema Top</h1><p>Gerenciamento de Problemas<p>
+            </span>
+        </div>
+        </nav>
+	
+	<div class="container"><?php
+
    function deletaproblema($ID){
     	     $sql="DELETE FROM problema WHERE id =".$ID."";   
 	     $c = new Controle();
@@ -38,6 +49,8 @@
     	deletaproblema($id);
    }  
     
+   
+	
     $c = new Controle();
     $query = 'SELECT id, descricao, data, urgencia, numero FROM problema ORDER BY numero';
         
@@ -55,7 +68,7 @@
 		<?=$linha['descricao']?> 
 		<br>
 		<br>
-		<input type="button" value="Remover" name-"remover" id="rem" 
+		<input type="button" class="btn btn-outline-dark btn-sm" value="Remover" name-"remover" id="rem" 
 		onclick="return deleteqry(<?php echo $linha['id'] ?>, <?php echo $linha['numero'] ?>);"/>
     	</div>
     </div>
@@ -64,6 +77,10 @@
 	
     <?php    
     } 
+    ?>
+	<br>
+	<a href="index.php" class="btn btn-outline-dark" role="button">Voltar</a>
+	<div class="container"><?php
 
 ?>
 
@@ -73,7 +90,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Problemas</title>
+    <title>Lista de Problemas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<script>
 		function deleteqry(id, num)
@@ -91,7 +108,84 @@
 	</script>
 </head>
 <body>
-    <a href="index.php" class="btn btn-primary" role="button">Voltar</a>
 </body>
+<style>
+	body {
+	  background-image: url('background.jpg');
+	  opacity: 1;
+	  background-repeat: no-repeat;
+  	  background-attachment: fixed;
+  	  background-size: 100% 100%;
+	}
+	
+	.btn-primary {
+	    text-decoration: none ;
+	    color: black;
+	    background-color: #FFF8DC;
+	}
+	    
+	.btn-primary:hover{
+	    background-color: #FFF8DC;
+	    opacity: 0.5;
+	    color: black;
+	}
 
+	h1,h2, p {
+	  color:#faf1ca; 
+	  font-family: 'Oswald', sans-serif; 
+	  line-height: 0.8; 
+	  text-align: center; 
+	  margin: 0 0 0;
+	  text-transform: uppercase;
+	}
+	h1 {
+	  padding-top: 20px ; 
+	  padding-bottom: 20px;
+	  font-weight: 700;
+	  font-size: 25pt;
+	  text-align: left;
+	  line-height: .2em;
+	  
+       }
+       p {
+	  padding-top: 10px ; 
+	  padding-bottom: 0px;
+	  font-weight: 700;
+	  font-size: 10pt;
+	  text-align: left;
+	  text-transform: uppercase;
+       }
+
+	h2 {
+	  padding-top: 30px;
+	  padding-bottom:10px;
+	  font-weight: 600; 
+	  font-size: 20pt;
+	  text-align: center;
+	  line-height: 1em;
+	}
+	
+	.container {
+	  color:#black; 
+	  max-width:500px;
+	  padding:10px;
+	  margin:10px auto;
+	  border-radius:8px;
+	  background:#f9f1f1;
+	  text-align: center;
+	}
+	.list-group{
+	  
+	  max-width: 300px;
+	  background:#f9f1f1;
+	}
+	.list-group-item{
+	  border-width: 0px 0em 1px 0; /* top right bottom left */
+	  max-width: 300px;
+	  border-color: #313639;
+	  background:#f9f1f1;
+	  padding-bottom:10px;
+	}
+	
+</style>
 </html>
