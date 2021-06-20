@@ -97,7 +97,7 @@
 		<?php if(!$linha['status']){
     			?>
 			<font color="red">  
-			<b>Este problema deixa a sala indisponível.<b>
+			<b>Este problema deixa a sala indisponível.</b>
 			</font>  
 		<?php
     		}
