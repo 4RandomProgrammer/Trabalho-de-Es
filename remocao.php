@@ -11,7 +11,7 @@
     spl_autoload_extensions('.class.php'); // quais extensões iremos considerar
     spl_autoload_register('MyAutoload');
 
-	 ?>
+   	 ?>
 	<nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <span class="navbar-text">
@@ -21,29 +21,55 @@
         </nav>
 	
 	<div class="container"><?php
-
+   
    function deletaproblema($ID){
-    	     $sql="DELETE FROM problema WHERE id =".$ID."";   
-	     $c = new Controle();
-	     $c->deleteBD($sql);
+   	    $c = new Controle();
+	    //recupera o num da sala e status do problema
+	    $query = "SELECT numero, status FROM problema WHERE id='".$ID."'"; 		
+	    $selecao = $c->selectBD($query);
+	    $linha = mysqli_fetch_array($selecao);
+	    
+	    if($linha['status'] == false){
+	    
+	    	//se o problema deixa a sala indisponível
+	    	//é necessario observar se a sala tem outros problemas que a deixam indisponível
+	    	$query = "SELECT id, status FROM problema WHERE numero='".$linha['numero']."'";
+	    	$selecao = $c->selectBD($query);
+	    	
+	    	$salaStatus = true;
+	    	while($lin = mysqli_fetch_array($selecao)){
+	    		if($lin['id'] != $ID && $lin['status'] == false){
+	    		//há um problema que tambem deixa a sala indisponivel
+	    		//nesse caso a solucao desse problema nao altera o status da sala
+	    			$salaStatus = false;
+	    			break;
+	    		}
+	    	//se não há nenhum outro problema que deixa a sala indisponível, a sala passsa a ficar disponível
+	    	}
+	    	//altera o status da sala se $salaStatus for verdadeiro
+	    	if($salaStatus == true){
+	    		$query = "UPDATE sala SET sala.status = true WHERE numero ='".$linha['numero']."'";
+                	$c->insertBD($query);
+	    	}	
+	    		
+	    }
+	    
+	    //se ele nao afeta a disponibilidade basta remover
+	    $sql="DELETE FROM problema WHERE id =".$ID."";   
+	    $c->deleteBD($sql);
+	    
+	 
 	     ?>
 	     <div class="alert alert-success" role="alert">
   			Problema removido com sucesso!
   		</div>
 	      <?php
    		
-   		if($_GET['sala'])
-   		{	
-   			$num = intval($_GET['sala']);
-    			$query = "UPDATE sala SET sala.status = true WHERE numero ='".$num."'";
-                	$c->insertBD($query);
-   
-    		} 
-	     //<script>window.location="remocao.php"</script><?php
+   	     //<script>window.location="remocao.php"</script><?php
     }
     
-   
-    if( isset( $_GET['id'])) //Undefined index aqui
+
+    if(isset($_GET['id'])) //Undefined index aqui
    {
    	$id = intval($_GET['id']);
     	deletaproblema($id);
@@ -69,7 +95,7 @@
 		<br>
 		<br>
 		<input type="button" class="btn btn-outline-dark btn-sm" value="Remover" name-"remover" id="rem" 
-		onclick="return deleteqry(<?php echo $linha['id'] ?>, <?php echo $linha['numero'] ?>);"/>
+		onclick="return deleteqry(<?php echo $linha['id'] ?>);"/>
     	</div>
     </div>
     <br>
@@ -93,16 +119,10 @@
     <title>Lista de Problemas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<script>
-		function deleteqry(id, num)
+		function deleteqry(id)
 		{ 
-		  if(confirm("Tem certeza que deseja remover este problema?")==true){
-		  
-		  	if(confirm("Deixar a sala disponível?")==true){
-		  		window.location="remocao.php?id="+id+"&sala="+num;
-		  		return;
-		  	}
-			window.location="remocao.php?id="+id;
-		  }
+		  if(confirm("Tem certeza que deseja remover este problema?")==true)
+		  	window.location="remocao.php?id="+id;
 		  return false;
 		}
 	</script>
@@ -186,6 +206,5 @@
 	  background:#f9f1f1;
 	  padding-bottom:10px;
 	}
-	
 </style>
 </html>
