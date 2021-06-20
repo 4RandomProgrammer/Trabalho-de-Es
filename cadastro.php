@@ -92,75 +92,146 @@
         <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <span class="navbar-text">
-            <h1>Cinema top 😎</h1>
+            <h1>Cinema Top</h1><p>Gerenciamento de Problemas<p>
             </span>
         </div>
         </nav>
 
         <div style="text-align: center; margin-left:30%">
         <div class="alinhar" style="width:500px;">
-            <h2>Cadastro de problemas</h2>
+     
+            <h2>Cadastro de Problemas</h2>
             <div class="alert alert-danger" role="alert">
                 * Campos Obrigatórios
             </div>
             <p><font color="#AA0000"></font></p>
+	
+		<div class="container">
+		    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
 
-            <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
+		    <label for="cSala">Sala: </label> 
 
-            <label for="cSala">Sala: </label> 
+		    <span class="error">
 
-            <span class="error">
+		    <select name="tSala" id="cSala">
+		        <option value="erro">--</option>
+		        <?php
 
-            <select name="tSala" id="cSala">
-                <option value="erro">--</option>
-                <?php
+		            $query = 'SELECT numero, status FROM sala ORDER BY numero';
 
-                    $query = 'SELECT numero, status FROM sala ORDER BY numero';
+		            $selecao = $conexao->selectBD($query);
 
-                    $selecao = $conexao->selectBD($query);
+		            while($row = mysqli_fetch_array($selecao)){
+		                
+		                echo '<option value="'.$row['numero'].'">'.$row['numero'].'</option>';
 
-                    while($row = mysqli_fetch_array($selecao)){
-                        
-                        echo '<option value="'.$row['numero'].'">'.$row['numero'].'</option>';
+		            }
 
-                    }
+		        ?>
+		    </select>
+		    <font color="#AA0000">* <?php echo $erroSala;?></font></span>
+		    <br><br>
 
-                ?>
-            </select>
-            <font color="#AA0000">* <?php echo $erroSala;?></font></span>
-            <br><br>
+		    <label for="tUrgencia">Gravidade: </label> 
+		    
+		    <input type="radio" name="tUrgencia" id="cBaixa" value="baixa" ><label for="cBaixa">Baixa</label>
+		    <input type="radio" name="tUrgencia" id="cMedia" value="media"> <label for="cMedia">Média</label>
+		    <input type="radio" name="tUrgencia" id="cUrgente" value="urgente"> <label for="cUrgente">Urgente</label>
+		    <span class="error"><font color="#AA0000">* <?php echo $erroUrgencia;?></font></span>
 
-            <label for="tUrgencia">Gravidade: </label> 
-            
-            <input type="radio" name="tUrgencia" id="cBaixa" value="baixa" ><label for="cBaixa">Baixa</label>
-            <input type="radio" name="tUrgencia" id="cMedia" value="media"> <label for="cMedia">Média</label>
-            <input type="radio" name="tUrgencia" id="cUrgente" value="urgente"> <label for="cUrgente">Urgente</label>
-            <span class="error"><font color="#AA0000">* <?php echo $erroUrgencia;?></font></span>
+		    <br><br>
+		    <label for="Indisponivel">A sala está indisponível?&ensp;</label><input type = "checkbox" id = "Indisponivel" name = "Indisponivel" valor = "true">
+		    <br><br>
+		    <label for="cData"> Data de início </label>
+		    <input type="date" name="tData" id="cData">
+		    <span class="error"><font color="#AA0000">* <?php echo $erroData;?></font></span>
+		    
+		    <br><br>
 
-            <br><br>
-            <label for="Indisponivel">A sala está indisponível?&ensp;</label><input type = "checkbox" id = "Indisponivel" name = "Indisponivel" valor = "true">
-            <br><br>
-            <label for="cData"> Data de início </label>
-            <input type="date" name="tData" id="cData">
-            <span class="error"><font color="#AA0000">* <?php echo $erroData;?></font></span>
-            
-            <br><br>
-
-            <label for="cDescricao">Descrição:</label>
-            <span class="error"><font color="#AA0000">*<?php echo $erroDescricao;?></font></span>
+		    <label for="cDescricao">Descrição:</label>
+		    <span class="error"><font color="#AA0000">*<?php echo $erroDescricao;?></font></span>
+		    <br>
+		    <textarea name="tDescricao" id="cDescricao" cols="40" rows="6"></textarea>
+		    
+		    <br>
+		    <br>
+		    <button type="submit" name="enviarFormulario" class="btn btn-outline-dark">Enviar</button>
+		    <a href="index.php" class="btn btn-outline-dark" role="button">Voltar</a>
+		    
+		    </form>
+            </div>
             <br>
-            <textarea name="tDescricao" id="cDescricao" cols="50" rows="6"></textarea>
             
-            <br>
-            <br>
-            <button type="submit" name="enviarFormulario" class="btn btn-outline-dark">Enviar</button>
-            </form>
-            <br>
-            
-            <a href="index.php" class="btn btn-primary" role="button">Voltar</a>
         </div>
         </div>
         
 </body>
+
+<style>
+	body {
+	  background-image: url('background.jpg');
+	  opacity: 1;
+	  background-repeat: no-repeat;
+  	  background-attachment: fixed;
+  	  background-size: 100% 100%;
+	}
+	
+	.btn-primary {
+	    text-decoration: none ;
+	    color: black;
+	    background-color: #FFF8DC;
+	}
+	    
+	.btn-primary:hover{
+	    background-color: #FFF8DC;
+	    opacity: 0.5;
+	    color: black;
+	}
+
+	h1,h2, p {
+	  color:#faf1ca; 
+	  font-family: 'Oswald', sans-serif; 
+	  line-height: 0.8; 
+	  text-align: center; 
+	  margin: 0 0 0;
+	  text-transform: uppercase;
+	}
+	h1 {
+	  padding-top: 20px ; 
+	  padding-bottom: 20px;
+	  font-weight: 700;
+	  font-size: 25pt;
+	  text-align: left;
+	  line-height: .2em;
+	  
+       }
+       p {
+	  padding-top: 10px ; 
+	  padding-bottom: 0px;
+	  font-weight: 700;
+	  font-size: 10pt;
+	  text-align: left;
+	  text-transform: uppercase;
+       }
+
+	h2 {
+	  padding-top: 30px;
+	  padding-bottom:10px;
+	  font-weight: 600; 
+	  font-size: 20pt;
+	  text-align: center;
+	  line-height: 1em;
+	}
+	
+	.container {
+	  color:#black; 
+	  max-width:500px;
+	  padding:20px;
+	  margin:20px auto;
+	  border-radius:8px;
+	  background:#f9f1f1;
+	  text-align: center;
+	}
+</style>
 
 </html>
