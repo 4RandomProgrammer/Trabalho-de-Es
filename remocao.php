@@ -43,7 +43,7 @@
     }
     
    
-    if($_GET['id']) //Undefined index aqui
+    if( isset( $_GET['id'])) //Undefined index aqui
    {
    	$id = intval($_GET['id']);
     	deletaproblema($id);
